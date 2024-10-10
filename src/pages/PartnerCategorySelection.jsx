@@ -129,7 +129,10 @@ const PartnerCategorySelection = () => {
   return (
     <div className="max-w-2xl mx-auto p-4">
       <div className="bg-white rounded-lg shadow flex items-center justify-center">
-        <Link to="/" className="flex items-center">
+        <Link
+          to="/"
+          className="flex items-center text-decoration-none text-dark"
+        >
           <img
             src="/Images/LogoM.png"
             alt="MyGariApp Logo"
@@ -171,7 +174,7 @@ const PartnerCategorySelection = () => {
           <input
             type="text"
             id="businessType"
-            className={`mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50 bg-white h-20 pl-6 ${
+            className={` block w-full rounded-md border border-gray-300 shadow-sm focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50 bg-white h-10 pl-6 ${
               errors.businessType ? "border-red-500" : ""
             }`}
             placeholder="Business Name"
@@ -186,7 +189,6 @@ const PartnerCategorySelection = () => {
           {errors.businessType && (
             <p className="mt-2 text-sm text-red-600 flex items-center pl-6">
               {" "}
-              {/* Added padding-left to align error message */}
               <AlertCircle className="w-4 h-4 mr-1" />
               {errors.businessType}
             </p>

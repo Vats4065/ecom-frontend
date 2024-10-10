@@ -8,13 +8,13 @@ function BasicExample() {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <div>
-          <Navbar.Brand href="#home">MyGariApp</Navbar.Brand>
+          <Navbar.Brand href="/home">MyGariApp</Navbar.Brand>
         </div>
         <div>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           {/* <Navbar.Collapse id="basic-navbar-nav"> */}
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
             <Nav.Link href="/partner-type">Signup</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
