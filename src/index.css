@@ -1,0 +1,352 @@
+/* Existing styles */
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* LandingPage styles */
+.landing-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+  margin-right: 0.5rem;
+  background-image: url("../public/Images/LogoM.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.app-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.sign-up-btn {
+  padding: 0.5rem 1rem;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sign-up-btn:hover {
+  background-color: #dc2626;
+}
+
+/* Common section styles */
+.transport-section,
+.partner-section,
+.contact-section {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Transport Section styles */
+.transport-section {
+  background-image: url("../public/Images/TransportB.png");
+}
+
+.transport-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  width: 100%;
+  padding: 2rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.main-title {
+  font-size: 3.75rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.highlight {
+  color: #ef4444;
+}
+
+/* Updated Typewriter animation styles */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #ef4444;
+  }
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 0.15em solid #ef4444;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.transport-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.transport-btn:hover {
+  background-color: #dc2626;
+}
+
+.transport-btn::after {
+  content: "→";
+  margin-left: 0.5rem;
+}
+
+/* Partner Section styles */
+.partner-section {
+  background-image: url("../public/Images/partnerB.png");
+}
+
+.partner-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  width: 100%;
+  padding: 2rem;
+  color: white;
+}
+
+.section-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: #d1d5db;
+  margin-bottom: 2rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 48rem;
+  width: 100%;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.category-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(31, 41, 55, 0.8);
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.category-btn:hover {
+  background-color: rgba(31, 41, 55, 1);
+}
+
+.category-icon {
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.category-name {
+  text-align: center;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.social-links {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 2;
+}
+
+.social-link {
+  color: white;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.social-link:hover {
+  color: #d1d5db;
+}
+
+.footer-logo {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 2;
+}
+
+/* Contact Section styles */
+.contact-section {
+  background-image: url("../public/Images/ContactSec.png");
+}
+
+.contact-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  width: 100%;
+  padding: 2rem;
+  color: white;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem 2rem;
+  max-width: 48rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.contact-item {
+  text-align: left;
+}
+
+.contact-subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ef4444;
+  margin-bottom: 0.5rem;
+}
+
+.contact-item p {
+  color: white;
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.category-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 51, 0.69); /* Dark blue with 69% opacity */
+  color: white; /* Changed text color to white for better visibility */
+  transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.466);
+}
+
+.category-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.category-icon {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* This will make the icon white */
+}
+
+.category-name {
+  font-size: 14px;
+  text-align: center;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  width: 69px; /* Adjust as needed */
+  height: auto;
+  margin-right: 10px; /* Space between logo and text */
+}
