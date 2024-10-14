@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const AccountCreation = ({ onBack, onComplete }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -13,7 +16,7 @@ const AccountCreation = ({ onBack, onComplete }) => {
     email: "",
     mtaa: "",
     password: "",
-    username: "",
+    name: "",
     confirmPassword: "",
     businessName: "",
   });
@@ -208,7 +211,7 @@ const AccountCreation = ({ onBack, onComplete }) => {
     if (!formData.lastName.trim())
       newErrors.lastName = "Please write your last name.";
     if (!formData.phoneNumber.trim())
-      newErrors.phoneNumber = "Please enter your phone number.";
+      newErrors.phoneNumber = "Please enter your phoneNumber number.";
     if (!formData.location.trim())
       newErrors.location = "Please choose your location.";
     if (!formData.email.trim())
@@ -219,10 +222,10 @@ const AccountCreation = ({ onBack, onComplete }) => {
       newErrors.mtaa = "Please enter your Mtaa or Village.";
     if (formData.password.length < 8)
       newErrors.password = "Password must be at least 8 characters long.";
-    if (formData.username.length < 3 || formData.username.length > 20)
-      newErrors.username = "Username must be between 3 and 20 characters long.";
-    if (!/^[a-zA-Z0-9_]+$/.test(formData.username))
-      newErrors.username =
+    if (formData.name.length < 3 || formData.name.length > 20)
+      newErrors.name = "Username must be between 3 and 20 characters long.";
+    if (!/^[a-zA-Z0-9_]+$/.test(formData.name))
+      newErrors.name =
         "Username can only contain letters, numbers, and underscores.";
     if (formData.password !== formData.confirmPassword)
       newErrors.confirmPassword = "Passwords do not match.";
@@ -241,11 +244,27 @@ const AccountCreation = ({ onBack, onComplete }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Form is valid. Submitting...", formData);
-      onComplete(formData);
+      try {
+        await axios.post(`http://localhost:5000/api/user/signup`, {
+          headers: { "Content-Type": "application/json" },
+          ...formData,
+        });
+        const res = await axios.post(
+          "http://localhost:5000/api/user/send-otp",
+          {
+            email: formData.email,
+          }
+        );
+
+        dispatch({ type: "SIGNUP", payload: res.data.user });
+
+        onComplete(formData);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       console.log("Form has errors. Please correct them.");
     }
@@ -451,22 +470,22 @@ const AccountCreation = ({ onBack, onComplete }) => {
             </div>
             <div>
               <label
-                htmlFor="username"
+                htmlFor="name"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
                 Username
               </label>
               <input
                 type="text"
-                id="username"
-                name="username"
-                value={formData.username}
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                 required
               />
-              {errors.username && (
-                <span className="text-red-500 text-sm">{errors.username}</span>
+              {errors.name && (
+                <span className="text-red-500 text-sm">{errors.name}</span>
               )}
             </div>
           </div>

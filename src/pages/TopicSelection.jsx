@@ -52,7 +52,7 @@ const TopicSelection = () => {
 
   const handleContinue = () => {
     if (selectedTopics.length > 0) {
-      navigate("/onboarding/account-creation"); // Assuming this is the next step
+      navigate("/onboarding/account-creation");
     } else {
       setError("Please select at least one topic before continuing.");
     }

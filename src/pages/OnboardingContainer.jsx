@@ -6,12 +6,13 @@ import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 // import AccountCreation from "./AccountCreation";
 // import PhoneVerification from "./PhoneVerification";
 // import VerificationSuccess from "./VerificationSuccess";
-
-import HomePage from "./HomePage";
 import PartnerCategorySelection from "./PartnerCategorySelection";
 import PartnerTypeSelection from "./PartnerType";
 import TopicSelection from "./TopicSelection";
 import AccountCreation from "./AccountCreation";
+import PhoneVerification from "./PhoneVerification";
+import VerificationSuccess from "./VerificationSuccess";
+import WelcomePage from "./WelcomePage";
 
 const OnboardingContainer = () => {
   const navigate = useNavigate();
@@ -66,13 +67,13 @@ const OnboardingContainer = () => {
           <AccountCreation
             onComplete={(data) => {
               updateData(data);
-              nextStep("/onboarding/phone-verification");
+              nextStep("/onboarding/phoneNumber-verification");
             }}
           />
         }
       />
-      {/* <Route
-        path="phone-verification"
+      <Route
+        path="phoneNumber-verification"
         element={
           <PhoneVerification
             phoneNumber={onboardingData.phoneNumber}
@@ -88,9 +89,12 @@ const OnboardingContainer = () => {
             onComplete={() => nextStep("/onboarding/welcome")}
           />
         }
-      /> */}
-      <Route path="welcome" element={<HomePage />} />
-      <Route path="*" element={<Navigate to="/partner-type" replace />} />
+      />
+      <Route path="welcome" element={<WelcomePage />} />
+      <Route
+        path="*"
+        element={<Navigate to="/onboarding/partner-type" replace />}
+      />
     </Routes>
   );
 };
