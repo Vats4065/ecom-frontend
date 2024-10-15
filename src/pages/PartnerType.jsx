@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { AlertCircle, Check } from "lucide-react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const PartnerTypeSelection = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const options = [
     { id: "rider", title: "As a Rider", icon: "/Images/Icons/RiderI.png" },
@@ -41,6 +43,7 @@ const PartnerTypeSelection = () => {
       setError("Please select one option before continuing.");
     } else {
       navigate(`/onboarding/partner-category?type=${selectedOption}`);
+      dispatch({ type: "SELECT_ROLE", payload: selectedOption });
     }
   };
 

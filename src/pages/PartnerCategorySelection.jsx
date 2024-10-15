@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronRight, AlertCircle } from "lucide-react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const PartnerCategorySelection = () => {
   const [businessType, setBusinessType] = useState("");
@@ -8,7 +9,7 @@ const PartnerCategorySelection = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const location = useLocation();
-
+  const role = useSelector((state) => state);
   const [categoryType, setCategoryType] = useState("");
 
   useEffect(() => {

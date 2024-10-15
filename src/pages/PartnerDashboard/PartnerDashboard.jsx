@@ -5,6 +5,7 @@ import PartnerDashboardHome from "./PartnerDashboardHome";
 import PartnerDashboardPromotion from "./PartnerDashboardPromotion";
 import PartnerDashboardBooking from "./PartnerDashboardBooking";
 import ProductServices from "./ProductServices";
+import AddProduct from "./ProductDashboard/AddProduct";
 
 const PartnerDashboard = () => {
   return (
@@ -15,6 +16,8 @@ const PartnerDashboard = () => {
         <Route path="/product&service" element={<ProductServices />} />
         <Route path="/promotion" element={<PartnerDashboardPromotion />} />
         <Route path="/booking" element={<PartnerDashboardBooking />} />
+        <Route path="/add-product" element={<AddProduct />} />
+
         {/* <Route path="partner-category" element={<PartnerCategorySelection />} />
         <Route path="topic-selection" element={<TopicSelection />} />
         <Route path="account-creation" element={<AccountCreation />} />

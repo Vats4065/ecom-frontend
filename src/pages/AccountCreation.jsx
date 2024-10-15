@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import country from "../utils/ContryCode.json";
 
 const AccountCreation = ({ onBack, onComplete }) => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const AccountCreation = ({ onBack, onComplete }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    countryCode: "254",
+    countryCode: "+",
     phoneNumber: "",
     location: "",
     email: "",
@@ -19,10 +20,12 @@ const AccountCreation = ({ onBack, onComplete }) => {
     name: "",
     confirmPassword: "",
     businessName: "",
+    role: "",
   });
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const role = useSelector((state) => state);
 
   const kenyaCounties = [
     "Mombasa",
@@ -212,8 +215,7 @@ const AccountCreation = ({ onBack, onComplete }) => {
       newErrors.lastName = "Please write your last name.";
     if (!formData.phoneNumber.trim())
       newErrors.phoneNumber = "Please enter your phoneNumber number.";
-    if (!formData.location.trim())
-      newErrors.location = "Please choose your location.";
+
     if (!formData.email.trim())
       newErrors.email = "Please enter your email address.";
     if (!/\S+@\S+\.\S+/.test(formData.email))
@@ -249,8 +251,8 @@ const AccountCreation = ({ onBack, onComplete }) => {
     if (validateForm()) {
       try {
         await axios.post(`http://localhost:5000/api/user/signup`, {
-          headers: { "Content-Type": "application/json" },
           ...formData,
+          ...(formData.role = role.signup.user.role),
         });
         const res = await axios.post(
           "http://localhost:5000/api/user/send-otp",
@@ -364,8 +366,13 @@ const AccountCreation = ({ onBack, onComplete }) => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                 required
               >
-                <option value="254">Kenya (+254)</option>
-                <option value="256">Uganda (+256)</option>
+                {country.map((i) => {
+                  return (
+                    <option key={i.code} value={i.code}>
+                      {i.dial_code} {i.name}
+                    </option>
+                  );
+                })}
               </select>
             </div>
             <div>
@@ -393,7 +400,7 @@ const AccountCreation = ({ onBack, onComplete }) => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
+            {/* <div>
               <label
                 htmlFor="location"
                 className="block text-sm font-medium text-gray-700 mb-1"
@@ -424,7 +431,7 @@ const AccountCreation = ({ onBack, onComplete }) => {
               {errors.location && (
                 <span className="text-red-500 text-sm">{errors.location}</span>
               )}
-            </div>
+            </div> */}
             <div>
               <label
                 htmlFor="email"
